@@ -6,7 +6,7 @@
   <title>Prakshal Doshi — Site Reliability Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,12 +24,13 @@
       --gray-800: #1e293b;
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans: 'Inter', -apple-system, sans-serif;
+      --hand: 'Caveat', cursive;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; font-size: 20px; }
 
     body {
-      font-family: var(--sans);
+      font-family: var(--hand);
       color: var(--gray-800);
       background: var(--white);
       line-height: 1.6;
@@ -142,25 +143,24 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: center;
-      padding: 120px 2rem 80px;
+      padding: 0 2rem;
       position: relative;
       overflow: hidden;
     }
 
-    #hero::before {
-      content: '';
-      position: absolute;
-      top: -200px; right: -200px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    #hero::before { display: none; }
 
     .hero-inner {
       max-width: 960px;
       margin: 0 auto;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
     }
 
     .hero-eyebrow {
@@ -173,9 +173,9 @@
     }
 
     .hero-name {
-      font-family: var(--serif);
+      font-family: var(--hand);
       font-size: clamp(2.8rem, 6vw, 5rem);
-      font-weight: 900;
+      font-weight: 700;
       color: var(--white);
       line-height: 1.1;
       margin-bottom: 0.75rem;
@@ -272,17 +272,18 @@
     .section-inner { max-width: 1080px; margin: 0 auto; }
 
     .section-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      font-family: var(--hand);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: none;
       color: var(--blue);
       margin-bottom: 0.75rem;
     }
 
     .section-title {
-      font-family: var(--serif);
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-family: var(--hand);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
       font-weight: 700;
       color: var(--navy);
       line-height: 1.2;
@@ -376,48 +377,110 @@
     /* ── SKILLS ── */
     #skills { background: var(--off-white); }
 
-    .skills-group { margin-bottom: 3rem; }
+    .skills-group { margin-bottom: 1.5rem; }
 
     .skills-group-title {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--gray-400);
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.35rem;
       border-bottom: 1px solid var(--gray-200);
     }
 
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 0.4rem;
     }
 
     .skill-chip {
       background: var(--white);
       border: 1px solid var(--gray-200);
       border-radius: 4px;
-      padding: 0.5rem 1rem;
-      font-size: 0.85rem;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.78rem;
       font-weight: 500;
       color: var(--navy);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.35rem;
       transition: border-color 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      cursor: default;
     }
+    a.skill-chip { cursor: pointer; }
+    a.skill-chip:hover { color: var(--indigo); }
 
     .skill-chip:hover {
       border-color: var(--blue);
       box-shadow: 0 0 0 3px rgba(37,99,235,0.08);
     }
 
+    /* ── CERT CARDS ── */
+    .cert-cards {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0.65rem;
+      margin-top: 2rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+    .cert-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      flex: 1 1 0;
+      min-width: 0;
+      border-top: 3px solid var(--cert-color, var(--indigo));
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+      white-space: nowrap;
+    }
+    .cert-card:hover {
+      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+      transform: translateY(-2px);
+    }
+    .cert-code {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--cert-color, var(--indigo));
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .cert-name {
+      font-size: 0.72rem;
+      color: var(--gray-600);
+      line-height: 1.35;
+      white-space: normal;
+    }
+    .cert-issuer {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.35rem;
+    }
+    .cert-verify {
+      font-size: 0.65rem;
+      color: var(--cert-color, var(--indigo));
+      margin-top: 0.3rem;
+    }
+
     .skill-dot {
-      width: 7px; height: 7px;
+      width: 5px; height: 5px;
       border-radius: 50%;
       background: var(--blue);
+      flex-shrink: 0;
     }
 
     /* ── EXPERIENCE ── */
@@ -1060,134 +1123,15 @@
 
 <!-- ── HERO ── -->
 <section id="hero">
-  <div class="hero-inner">
-    <p class="hero-eyebrow">Site Reliability Engineer · Apple</p>
-    <h1 class="hero-name">Prakshal Doshi</h1>
-    <p class="hero-title">Site Reliability Engineer · Apple · MS Computer Science, SDSU</p>
-    <p class="hero-tagline">Leading global SRE operations at Apple — architecting LLM-powered agents, driving GenAI adoption across DevOps workflows, and keeping production systems running at 20,000+ TPS.</p>
-    <div class="hero-ctas">
-      <a href="#projects" class="btn-primary">View My Work</a>
-      <a href="#contact" class="btn-outline">Get In Touch</a>
+  <canvas id="hero-graph" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;"></canvas>
+  <div style="position:absolute;bottom:28px;right:28px;z-index:2;display:flex;flex-direction:column;gap:0.4rem;pointer-events:none;">
+    <div style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.38);font-family:var(--hand);font-size:1.1rem;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+      Click nodes to learn more
     </div>
-
-    <!-- Tech scroll strip -->
-    <div class="tech-strip-wrapper">
-      <div class="tech-strip" id="tech-strip">
-        <!-- duplicated for seamless loop -->
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          Kubernetes
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-          AWS
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M9 9h6M9 15h6"/></svg>
-          GCP
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-          Docker
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          Python
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          Terraform
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
-          Ansible
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-          Splunk
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
-          Jenkins
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 8v4l3 3"/></svg>
-          GenAI
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          Prometheus
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-          Grafana
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-          PostgreSQL
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          Linux
-        </span>
-        <!-- duplicate for seamless loop -->
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          Kubernetes
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-          AWS
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M9 9h6M9 15h6"/></svg>
-          GCP
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-          Docker
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          Python
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          Terraform
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
-          Ansible
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-          Splunk
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
-          Jenkins
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 8v4l3 3"/></svg>
-          GenAI
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          Prometheus
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-          Grafana
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-          PostgreSQL
-        </span>
-        <span class="tech-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          Linux
-        </span>
-      </div>
+    <div style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.38);font-family:var(--hand);font-size:1.1rem;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 9l7-7 7 7M5 15l7 7 7-7"/></svg>
+      Drag to rotate
     </div>
   </div>
 </section>
@@ -1196,26 +1140,20 @@
 <section id="about">
   <div class="section-inner">
     <p class="section-label fade-up">About Me</p>
-    <h2 class="section-title fade-up">Engineering Reliability at Apple Scale</h2>
+    <h2 class="section-title fade-up">Site Reliable Engineer at Apple</h2>
     <div class="about-grid">
       <div class="about-photo fade-up">
-        <div class="photo-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-            <circle cx="12" cy="7" r="4"/>
-          </svg>
-          <p>[Add your photo here]</p>
-        </div>
+        <img src="white-prakshal.png" alt="Prakshal Doshi" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block;">
       </div>
       <div class="fade-up">
         <p class="section-label">Bio</p>
         <h2 class="section-title" style="font-size:1.8rem;margin-bottom:1rem;">Prakshal Doshi</h2>
         <div class="about-bio">
-          <p><strong>Bio — I will add it later.</strong></p>
+          <p>Site Reliability Engineer and GenAI practitioner with a track record of critical engineering roles at <strong>Apple, J.P. Morgan Chase, Autodesk, and Quantiphi</strong>.</p>
           <br/>
-          <p>Currently a <strong>Site Reliability Engineer at Apple</strong>, leading a global team of 11 SREs managing infrastructure reliability for customer systems — including AppleCare and every new product launch — on Apple Cloud and AWS, supporting workloads exceeding <strong>20,000 TPS</strong>.</p>
+          <p>Currently leading global SRE operations at <strong>Apple</strong> for customer-facing systems processing <strong>26,000+ TPS</strong> across new product launches, while serving as <strong>GenAI DRI</strong> driving a measured <strong>47.9% efficiency improvement</strong> across three engineering teams.</p>
           <br/>
-          <p>Previously at <strong>Autodesk</strong> and <strong>J.P. Morgan Chase</strong>, and earlier as a Cloud &amp; DevOps Engineer at <strong>Quantiphi Analytics</strong>. Holds an <strong>MS in Computer Science from San Diego State University</strong> (GPA 3.71). Certified AWS Solution Architect, GCP Cloud Engineer, CKAD, CKA, and Terraform Associate. Published researcher, IEEE peer reviewer, and ranked among HackerNoon's top AI &amp; ML writers.</p>
+          <p>Author of peer-reviewed research published in <strong>SpringerNature and Springer</strong>, invited reviewer and Technical Program Committee member for <strong>IEEE Conferences</strong>, hackathon judge across <strong>14 global and national events</strong>, Board of Studies member for an AI &amp; Data Science department, and invited expert speaker at multiple institutions.</p>
         </div>
         <div class="about-highlights">
           <div class="highlight-card">
@@ -1229,7 +1167,7 @@
             <div class="icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             </div>
-            <h3>20K+ TPS</h3>
+            <h3>26K+ TPS</h3>
             <p>Production Systems Owned</p>
           </div>
           <div class="highlight-card">
@@ -1252,6 +1190,7 @@
     <h2 class="section-title fade-up">What I Work With</h2>
     <p class="section-subtitle fade-up">A breadth of tools and platforms built through years of production engineering at scale.</p>
 
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem 2.5rem;margin-top:0.5rem;">
     <div class="skills-group fade-up">
       <p class="skills-group-title">Cloud &amp; Infrastructure</p>
       <div class="skills-grid">
@@ -1322,15 +1261,51 @@
       </div>
     </div>
 
-    <div class="skills-group fade-up">
-      <p class="skills-group-title">Certifications</p>
-      <div class="skills-grid">
-        <span class="skill-chip"><span class="skill-dot"></span>AWS Solutions Architect</span>
-        <span class="skill-chip"><span class="skill-dot"></span>GCP Professional Cloud Engineer</span>
-        <span class="skill-chip"><span class="skill-dot"></span>CKA — Certified Kubernetes Administrator</span>
-        <span class="skill-chip"><span class="skill-dot"></span>CKAD — Certified Kubernetes App Developer</span>
-        <span class="skill-chip"><span class="skill-dot"></span>Terraform Associate Developer</span>
+    </div>
+
+    <p class="skills-group-title fade-up" style="margin-top:2rem;">Certifications</p>
+    <div class="cert-cards fade-up">
+      <a href="https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/db760ee3-0684-4bfc-881e-8161da0d8e87-prakshal-suresh-doshi-430599e7-ab3c-4b7c-b8dd-8b6e03dc99fe-certificate.pdf" target="_blank" rel="noopener" class="cert-card" style="--cert-color:#326CE5;">
+        <span class="cert-code">CKS</span>
+        <span class="cert-name">Certified Kubernetes Security Specialist</span>
+        <span class="cert-issuer">CNCF</span>
+        <span class="cert-verify">View Certificate ↗</span>
+      </a>
+      <a href="https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/db760ee3-0684-4bfc-881e-8161da0d8e87-prakshal-suresh-doshi-6d76487a-f8f4-41eb-9ff0-58dff0fc0344-certificate.pdf" target="_blank" rel="noopener" class="cert-card" style="--cert-color:#326CE5;">
+        <span class="cert-code">CKA</span>
+        <span class="cert-name">Certified Kubernetes Administrator</span>
+        <span class="cert-issuer">CNCF</span>
+        <span class="cert-verify">View Certificate ↗</span>
+      </a>
+      <a href="https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/db760ee3-0684-4bfc-881e-8161da0d8e87-prakshal-doshi-5d5db537-144e-442e-9191-3a9acc65c2c4-certificate.pdf" target="_blank" rel="noopener" class="cert-card" style="--cert-color:#326CE5;">
+        <span class="cert-code">CKAD</span>
+        <span class="cert-name">Certified Kubernetes Application Developer</span>
+        <span class="cert-issuer">CNCF</span>
+        <span class="cert-verify">View Certificate ↗</span>
+      </a>
+      <a href="https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/db760ee3-0684-4bfc-881e-8161da0d8e87-prakshal-suresh-doshi-bb6e6e9d-15a5-4cac-89fb-48953ead2419-certificate.pdf" target="_blank" rel="noopener" class="cert-card" style="--cert-color:#326CE5;">
+        <span class="cert-code">KCSA</span>
+        <span class="cert-name">Kubernetes &amp; Cloud Native Security Associate</span>
+        <span class="cert-issuer">CNCF</span>
+        <span class="cert-verify">View Certificate ↗</span>
+      </a>
+      <div class="cert-card" style="--cert-color:#326CE5;">
+        <span class="cert-code">KCNA</span>
+        <span class="cert-name">Kubernetes &amp; Cloud Native Associate</span>
+        <span class="cert-issuer">CNCF</span>
       </div>
+      <a href="https://cp.certmetrics.com/amazon/en/public/verify/credential/YVH5W18DMBV11HSP" target="_blank" rel="noopener" class="cert-card" style="--cert-color:#FF9900;">
+        <span class="cert-code">AWS</span>
+        <span class="cert-name">Solutions Architect — Associate</span>
+        <span class="cert-issuer">Amazon Web Services</span>
+        <span class="cert-verify">View Certificate ↗</span>
+      </a>
+<a href="https://www.credly.com/badges/c421ee65-c17e-4d63-8a4c-a71c7897d1d5/linked_in_profile" target="_blank" rel="noopener" class="cert-card" style="--cert-color:#7B42BC;">
+        <span class="cert-code">TF</span>
+        <span class="cert-name">Terraform Associate Developer</span>
+        <span class="cert-issuer">HashiCorp</span>
+        <span class="cert-verify">View Certificate ↗</span>
+      </a>
     </div>
   </div>
 </section>
@@ -1350,13 +1325,15 @@
         <h3 class="timeline-role">Site Reliability Engineer — Customer Systems</h3>
         <p class="timeline-company">Apple · Cloud, Kubernetes, CI/CD, Splunk, Grafana, AWS, Ansible, Spinnaker, GenAI, MCP</p>
         <ul class="timeline-bullets">
-          <li>Leading a global team of 11 SREs managing infrastructure reliability across Apple Cloud and AWS for customer systems including AppleCare and new product launches, supporting workloads exceeding 20,000 TPS.</li>
-          <li>Architected LLM inference infrastructure and AI-powered agents with MCP integrations to automate incident triage across Splunk, Grafana, Kubernetes, and Ansible, increasing operational efficiency as part of GenAI initiatives across SRE.</li>
-          <li>Designed and implemented ChatOps-based deployments using Slack, Ansible, and AWS pipelines, improving release visibility and reducing rollout time by 30%.</li>
-          <li>Streamlined patching, change renewals, and cluster upgrade processes for 20+ applications, removing operational bottlenecks and improving release consistency.</li>
-          <li>Led migrations from end-of-life stacks (Datadog, Lambda 3.9, Kubernetes versions), ensuring platform stability and compliance.</li>
-          <li>Automated certificate renewals with integrated state management and alerting, cutting cert-related incidents by 95%.</li>
-          <li>Spearheaded company-level reliability initiatives including multi-region active-active deployments, failover validation, and cloud cost optimization programs.</li>
+          <li>Led a globally distributed team of 11 SREs responsible for customer-facing systems supporting AppleCare and major Apple product launches — processing <strong>26,000+ TPS</strong> across Apple Cloud and AWS. Personally involved in the resolution of multiple Severity-0 incidents.</li>
+          <li>Served as <strong>GenAI DRI</strong> for the SRE organization — drove end-to-end AI adoption across 3 engineering teams spanning 45 engineers managing 200+ apps, achieving a measured <strong>47.9% efficiency gain</strong> and reducing collective daily team effort from 116.2 to 60.5 hours/day.</li>
+          <li>Designed and deployed <strong>15+ AI-powered skills</strong> for SRE workflows (Kubernetes deployments, Splunk troubleshooting, PR reviews, certificate tracking, vulnerability analysis) — reducing task execution time from 2–3 hours to 15–20 minutes per task (<strong>87–91% reduction</strong>).</li>
+          <li>Architected an AI-driven incident management platform integrating LLMs, MCP infrastructure, Kubernetes, Splunk, HCL, and Halo to automate incident triage and root cause analysis, reducing investigation effort by <strong>60–75%</strong> across real production issues.</li>
+          <li>Built an enterprise certificate lifecycle management platform — eliminating <strong>20+ recurring Severity-0 and Severity-1</strong> certificate-related incidents. Certificate P0/P1 incidents reduced to zero following adoption across multiple teams.</li>
+          <li>Designed a ChatOps deployment platform integrating Slack, Ansible, and cloud pipelines — enabling self-serve non-production deployments without SRE involvement, reducing rollout time by <strong>30%</strong> and increasing release frequency.</li>
+          <li>Drove adoption of Apple-internal AI tools: RIO RCA Agent (<strong>54% reduction in build failures</strong>, 65.4% faster red-to-green, 35% reduction in daily RCA time across 123 repos) and SRE Assistant (50% reduction in deployment effort).</li>
+          <li>Published AI capabilities within Apple's internal AI ecosystem, reaching a community of <strong>41,000+ internal users</strong>. Led recurring training sessions for 40+ SREs and conducted 15+ senior technical interviews.</li>
+          <li>Established release governance and production readiness review processes, reducing average release window from a full day to ~4 hours — a <strong>75%+ reduction</strong> in cross-team standby effort per release.</li>
         </ul>
       </div>
 
@@ -1381,10 +1358,10 @@
         <h3 class="timeline-role">Cloud, DevOps &amp; Infrastructure Engineer (Intern)</h3>
         <p class="timeline-company">Autodesk · AWS, Big Data, Spark, Hive, Presto, Datadog, Terraform, CI/CD, Jenkins, Python</p>
         <ul class="timeline-bullets">
-          <li>Set up EMR clusters, load balancers, and security groups for Spark, Hive, Hadoop, and Presto using CloudFormation and Jenkins CI/CD, reducing deployment time from 55 minutes to 18 minutes.</li>
-          <li>Developed Trino, Hive, and Spark query scripts in Java to capture session information, query execution, and utilization for operational issues and monthly leadership metrics.</li>
-          <li>Configured Datadog alerts in stage and prod using Terraform to identify and resolve Spark, Hive, and Hadoop cluster performance issues.</li>
-          <li>Automated generation of EMR log files at dynamic S3 locations depending on year, month, and day using a Python Lambda function.</li>
+          <li>Developed workload intelligence and utilization analytics frameworks using Trino, Hive, Spark, Java, and AWS — capturing granular query-level metrics (execution duration, memory, compute utilization) that reduced cloud infrastructure costs by <strong>30–33%</strong> while improving query performance and operational visibility.</li>
+          <li>Implemented infrastructure automation and cloud provisioning solutions that reduced deployment timelines by more than <strong>65%</strong> while improving consistency, reliability, and operational scalability.</li>
+          <li>Set up EMR clusters, load balancers, and security groups for Spark, Hive, Hadoop, and Presto using CloudFormation and Jenkins CI/CD.</li>
+          <li>Configured Datadog alerts in stage and prod using Terraform; automated EMR log file generation at dynamic S3 locations via Python Lambda.</li>
         </ul>
       </div>
 
@@ -1394,10 +1371,9 @@
         <h3 class="timeline-role">Software Engineer, DevOps</h3>
         <p class="timeline-company">J.P. Morgan Chase · Cloud, Kubernetes, CI/CD, Jenkins, Bitbucket, Splunk, Elasticsearch, Python, Terraform</p>
         <ul class="timeline-bullets">
-          <li>Migrated monolithic application to microservices using distributed architecture on Kubernetes, reducing operational cost by 55%.</li>
-          <li>Developed CI/CD pipelines for parallel deployments of micro-frontend architecture in Groovy (Jenkins) with dynamic provisioning, reducing deployment time from 3 hours to 20 minutes on private cloud platform (Gaia).</li>
-          <li>Containerized applications using Docker and Kubernetes to reduce load and non-availability issues from 25 per month to 0.</li>
-          <li>Led major customer-facing P0/P1 incidents, authored detailed RCA documents, and presented executive-level post-incident reviews to stakeholders.</li>
+          <li>Led end-to-end migration of a monolithic on-premises application to distributed cloud-native microservices — refactoring <strong>200,000+ lines of code</strong> and reducing transaction processing time from 1 hour to under 10 minutes (<strong>83%+ improvement</strong>).</li>
+          <li>Architected a dynamic CI/CD deployment platform for micro-frontend architectures — built from scratch with automated testing, reducing deployment time from 3 hours to 20 minutes (<strong>89% reduction</strong>) and increasing deployment frequency by more than tenfold.</li>
+          <li>Containerized applications using Docker and Kubernetes, eliminating non-availability issues. Led customer-facing P0/P1 incidents and delivered executive-level post-incident reviews.</li>
           <li>Integrated monitoring and logging using Splunk, Elasticsearch, and Kibana; developed Python scripts to terminate idle resources, reducing cost by 35%.</li>
         </ul>
       </div>
@@ -1426,11 +1402,17 @@
     <p class="section-label fade-up">Education</p>
     <h2 class="section-title fade-up">Academic Background</h2>
     <div class="timeline" style="margin-top:0.5rem;">
-      <div class="timeline-item fade-up" style="padding-bottom:0;">
+      <div class="timeline-item fade-up">
         <div class="timeline-dot"></div>
         <p class="timeline-meta">Aug 2022 – Dec 2023 · San Diego, CA</p>
         <h3 class="timeline-role">Master of Science — Computer Science</h3>
         <p class="timeline-company">San Diego State University &nbsp;·&nbsp; GPA: 3.71 / 4.0</p>
+      </div>
+      <div class="timeline-item fade-up" style="padding-bottom:0;">
+        <div class="timeline-dot"></div>
+        <p class="timeline-meta">Aug 2016 – Jun 2019 · Mumbai, India</p>
+        <h3 class="timeline-role">Bachelor of Engineering — Computer Science</h3>
+        <p class="timeline-company">Dwarkadas J. Sanghvi College of Engineering (DJSCE), University of Mumbai &nbsp;·&nbsp; GPA: 8.82 / 10</p>
       </div>
     </div>
   </div>
@@ -1537,6 +1519,8 @@
   </div>
 </section>
 
+<!-- ── COMMUNITY 3D GLOBE ── -->
+
 <!-- ── PUBLICATIONS ── -->
 <section id="publications">
   <div class="section-inner">
@@ -1550,16 +1534,16 @@
       <div class="pub-item">
         <span class="pub-badge">SpringerNature</span>
         <div class="pub-content">
-          <h4>Interpretable Instance Segmentation for Camouflaged Wildlife Detection</h4>
-          <p>Published in ADCIS Vol. 3 · <strong>Best Paper Award at ICTCS</strong></p>
+          <h4>Recasting Fama-French Factors as Predictive Tools: A Sector-Focused Machine Learning Framework for Stock Returns</h4>
+          <p>SpringerNature Journal</p>
         </div>
       </div>
 
       <div class="pub-item">
         <span class="pub-badge">Springer</span>
         <div class="pub-content">
-          <h4>Recasting Fama-French Factors as Predictive Tools: A Sector-Focused Machine Learning Framework for Stock Returns</h4>
-          <p>ICT: Applications and Social Interfaces</p>
+          <h4>Interpretable Instance Segmentation for Camouflaged Wildlife Detection</h4>
+          <p>Springer · <strong>Best Paper Award at ADCIS 2025</strong></p>
         </div>
       </div>
 
@@ -1578,7 +1562,7 @@
       <div class="pub-item">
         <span class="pub-badge">HackerNoon</span>
         <div class="pub-content">
-          <h4>6 Articles · #4 in Top AI &amp; ML Writers</h4>
+          <h4>6 Articles · #1 in Top AI &amp; ML Writers</h4>
           <p>
             Includes HackerNoon Top Story and Techbeat features.
             <a href="https://hackernoon.com/u/prakshal-doshi" target="_blank" rel="noopener">Read on HackerNoon →</a>
@@ -1714,7 +1698,7 @@
   <div class="section-inner">
     <p class="section-label fade-up">Knowledge Sharing</p>
     <h2 class="section-title fade-up">Speaking Engagements</h2>
-    <p class="section-subtitle fade-up">Sharing expertise with students, engineers, and the broader tech community through lectures, workshops, and podcasts.</p>
+    <p class="section-subtitle fade-up">Sharing expertise with students, engineers, and the broader tech community through lectures, workshops, and podcasts. <a href="https://drive.google.com/drive/folders/1RUKTvqQ6xakIFG7tXAmrSBoPMKOH7NEb?usp=sharing" target="_blank" rel="noopener" style="color:var(--indigo);text-decoration:underline;font-weight:600;">View proof of engagements →</a></p>
 
     <div class="speaking-grid">
       <div class="speaking-card fade-up">
@@ -1799,8 +1783,8 @@
         <div class="award-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <h4>Best Paper — ICTCS</h4>
-        <p>Best Paper Award for "Interpretable Instance Segmentation for Camouflaged Wildlife Detection" — published in SpringerNature.</p>
+        <h4>Best Paper — ADCIS 2025</h4>
+        <p>Best Paper Award for "Interpretable Instance Segmentation for Camouflaged Wildlife Detection" — published in Springer.</p>
       </div>
 
       <div class="award-card fade-up">
@@ -1808,7 +1792,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12M15 7A3 3 0 119 7a3 3 0 016 0z"/></svg>
         </div>
         <h4>1st Place — Technical Paper Presentation</h4>
-        <p>Secured 1st place in Technical Paper Presentation at university level competitions.</p>
+        <p>First Place in the Technical Paper Presentation Competition at AICTE approved Vivekanand Education Society's Polytechnic, India.</p>
       </div>
 
       <div class="award-card fade-up">
@@ -1816,15 +1800,15 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
         <h4>Best Student Award</h4>
-        <p>Recognized as Best Student at university for academic and extracurricular excellence.</p>
+        <p>Top 0.2% selection rate — recognized as Best Student at AICTE approved Vivekanand Education Society's Polytechnic, India.</p>
       </div>
 
       <div class="award-card fade-up">
         <div class="award-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h.01M15 9h.01M9 15h.01M15 15h.01M12 12h.01"/></svg>
         </div>
-        <h4>State Scholarship</h4>
-        <p>Awarded state-level scholarship for academic performance — featured in Indian newspaper.</p>
+        <h4>State Merit Scholarship</h4>
+        <p>Top ~0.33% selection rate at the Secondary School Scholarship Exam — featured in Indian newspaper for academic distinction.</p>
       </div>
 
       <div class="award-card fade-up">
@@ -1941,7 +1925,7 @@
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
       </a>
       <!-- GitHub -->
-      <a href="https://github.com/prakshal-doshi" class="social-icon" target="_blank" rel="noopener" aria-label="GitHub">
+      <a href="https://github.com/doshiprakshal/" class="social-icon" target="_blank" rel="noopener" aria-label="GitHub">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
       </a>
       <!-- HackerNoon -->
@@ -1975,6 +1959,475 @@
     </ul>
   </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+(function () {
+  if (typeof THREE === 'undefined') return;
+  var wrap   = document.getElementById('hero');
+  var canvas = document.getElementById('hero-graph');
+  if (!wrap || !canvas) return;
+
+  var W = wrap.clientWidth || window.innerWidth;
+  var H = wrap.clientHeight || window.innerHeight;
+
+  // ── Scene ──
+  var scene  = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 300);
+  camera.position.z = 38;
+
+  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+  renderer.setSize(W, H);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x060d1a);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+
+  // ── Node definitions ──
+  var NODES = [
+    // level 0
+    { id:'root',  label:'Prakshal Doshi',           level:0, hex:0x0d0d0d, css:'#ffffff', r:4.2,  detail:'SRE @ Apple · MS CS, SDSU · Click a category node to expand' },
+    // level 1
+    { id:'judge', label:'Hackathon\nJudge',         level:1, hex:0xa78bfa, css:'#a78bfa', r:0.52, detail:'14 hackathons judged globally — FinBilim, Aethra, MLH, IBM×UNSA, FutureAI, vsHacks, Moonshot + more', parent:'root' },
+    { id:'ieee',  label:'IEEE\nReviewer',            level:1, hex:0x22d3ee, css:'#22d3ee', r:0.42, detail:'Technical reviewer for 3 IEEE conferences: GHTC · ETNCC · SmartGridComm 2026', parent:'root' },
+    { id:'speak', label:'Speaker',                   level:1, hex:0x34d399, css:'#34d399', r:0.44, detail:'6 speaking engagements — DJSCE, GEHU WeCode, VESP CSI, K8s Bootcamp, Podcast, Apple SRE', parent:'root' },
+    { id:'pub',   label:'Publications',              level:1, hex:0xfbbf24, css:'#fbbf24', r:0.52, detail:'10 publications — SpringerNature, Springer, Scopus · HackerNoon #4 AI/ML · 60 Days of Kubernetes', parent:'root' },
+    { id:'award', label:'Awards',                    level:1, hex:0xf87171, css:'#f87171', r:0.44, detail:'6 awards — Google Cloud Best Infrastructure, Best Paper ICTCS, 1st Place, Best Student, State Scholarship', parent:'root' },
+    { id:'mentor',label:'Mentorship',                level:1, hex:0xfb923c, css:'#fb923c', r:0.40, detail:'3 roles — Caltech Longevity 2026, DJSCE Board of Studies (8th & 9th), Jain Society SD Executive', parent:'root' },
+    // level 2 — judge children (14)
+    { id:'j1',  label:'FinBilim\n2025',              level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'FinBilim FinTech Hackathon 2025 · Global', parent:'judge' },
+    { id:'j2',  label:'Aethra AI\n2025',             level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'Aethra AI Hackathon 2025 · Global', parent:'judge' },
+    { id:'j3',  label:'AI Smart\nCity 2026',         level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'AI Autonomous Smart City Hackathon 2026 · Global', parent:'judge' },
+    { id:'j4',  label:'Build w/ AI\nMLH Ahlen',      level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'Build with AI × MLH Agentic AI Hackathon (Ahlen) · Global', parent:'judge' },
+    { id:'j5',  label:'Global Tech\nInnovation',     level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'Global Tech Innovation Hackathon 2026 · Global', parent:'judge' },
+    { id:'j6',  label:'IBM × UNSA\n2026',            level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'IBM × UNSA Tech Hackathon 2026 · Global', parent:'judge' },
+    { id:'j7',  label:'STEMINATE\nHACKS',            level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'STEMINATE HACKS 2026 · Global', parent:'judge' },
+    { id:'j8',  label:'FutureAI\nGlobal',            level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'FutureAI Global Hackathon 2026 · Global', parent:'judge' },
+    { id:'j9',  label:'vsHacks\n2026',               level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'vsHacks 2026 · Global', parent:'judge' },
+    { id:'j10', label:'Code Social\n2026',           level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'Build with AI: Code Social 2026 · Global', parent:'judge' },
+    { id:'j11', label:'Grizzly\nHacks III',          level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'Grizzly Hacks III · Global', parent:'judge' },
+    { id:'j12', label:'Moonshot\nHackathon',         level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'Moonshot Hackathon · Global', parent:'judge' },
+    { id:'j13', label:'Code-A-Thon\n2.0',           level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'Code-A-Thon 2.0 · National', parent:'judge' },
+    { id:'j14', label:'VES\nTechnothon',             level:2, hex:0xc4b5fd, css:'#c4b5fd', r:0.28, detail:'VES Technothon 2026 · State', parent:'judge' },
+    // level 2 — ieee (3)
+    { id:'i1',  label:'IEEE GHTC\n2026',             level:2, hex:0x67e8f9, css:'#67e8f9', r:0.32, detail:'Reviewed Educational Technology & Food Security NLP/ML submissions', parent:'ieee' },
+    { id:'i2',  label:'IEEE ETNCC\n2026',            level:2, hex:0x67e8f9, css:'#67e8f9', r:0.32, detail:'Reviewed Workday Integration & AI Predictive Monitoring papers', parent:'ieee' },
+    { id:'i3',  label:'SmartGrid\nComm 2026',        level:2, hex:0x67e8f9, css:'#67e8f9', r:0.32, detail:'TPC Reviewer · Data Analytics, ML & Energy Forecasting tracks', parent:'ieee' },
+    // level 2 — speak (6)
+    { id:'s1',  label:'DJSCE\nExpert Lec.',          level:2, hex:0x6ee7b7, css:'#6ee7b7', r:0.30, detail:'Expert lecture on SRE & AI industry applications at DJSCE', parent:'speak' },
+    { id:'s2',  label:'WeCode\nGEHU',               level:2, hex:0x6ee7b7, css:'#6ee7b7', r:0.30, detail:'YouTube Live · Guest speaker at Graphic Era Hill University WeCode Club', parent:'speak' },
+    { id:'s3',  label:'CSI Chapter\nVESP',           level:2, hex:0x6ee7b7, css:'#6ee7b7', r:0.30, detail:'Data Science industry practices & career pathways talk · VESP CSI Chapter', parent:'speak' },
+    { id:'s4',  label:'K8s Cloud\nBootcamp',         level:2, hex:0x6ee7b7, css:'#6ee7b7', r:0.30, detail:'Industry Expert & Mentor · Kubernetes & Cloud Native bootcamp, CSI Chapter', parent:'speak' },
+    { id:'s5',  label:'Connect Tech\nPodcast',       level:2, hex:0x6ee7b7, css:'#6ee7b7', r:0.30, detail:'Featured guest · VESP Alumni Association "Connect Tech" talk show', parent:'speak' },
+    { id:'s6',  label:'Apple SRE\nAI Sessions',      level:2, hex:0x6ee7b7, css:'#6ee7b7', r:0.30, detail:'Led GenAI education sessions for 30+ SREs at Apple', parent:'speak' },
+    // level 2 — pub (7)
+    { id:'p1',  label:'Wildlife\nDetection',         level:2, hex:0xfde68a, css:'#fde68a', r:0.30, detail:'Interpretable Instance Segmentation · SpringerNature ADCIS Vol. 3 · Best Paper @ ICTCS', parent:'pub' },
+    { id:'p2',  label:'Stock Returns\nML',           level:2, hex:0xfde68a, css:'#fde68a', r:0.30, detail:'Fama-French Factors as ML Predictive Tools · Springer ICT', parent:'pub' },
+    { id:'p3',  label:'Clinical Trial\nNLP',         level:2, hex:0xfde68a, css:'#fde68a', r:0.30, detail:'Hybrid Semantic-Rule NLP for Clinical Trial Matching · Scopus / IIETA', parent:'pub' },
+    { id:'p4',  label:'HackerNoon\n#4 AI/ML',        level:2, hex:0xfde68a, css:'#fde68a', r:0.30, detail:'6 articles · Ranked #4 AI & ML Writer 2025 · Top Story + Techbeat Feature', parent:'pub' },
+    { id:'p5',  label:'K8s Token\nAutoscaling',      level:2, hex:0xfde68a, css:'#fde68a', r:0.30, detail:'Scaling AI Inference on Kubernetes: Token-Based Autoscaling · HackerNoon Top Story', parent:'pub' },
+    { id:'p6',  label:'Guardian\nAgents',            level:2, hex:0xfde68a, css:'#fde68a', r:0.30, detail:'Guardian Agents: The Emerging Discipline of Agents that Watch Agents · HackerNoon Techbeat', parent:'pub' },
+    { id:'p7',  label:'60 Days of\nKubernetes',      level:2, hex:0xfde68a, css:'#fde68a', r:0.30, detail:'60 Days of Kubernetes — widely-read K8s series on Medium, zero to production', parent:'pub' },
+    // level 2 — award (6)
+    { id:'a1',  label:'Google Cloud\nBest Infra',    level:2, hex:0xfca5a5, css:'#fca5a5', r:0.30, detail:'Best Infrastructure award · 38-microservice GCP platform at enterprise scale', parent:'award' },
+    { id:'a2',  label:'Best Paper\nICTCS',           level:2, hex:0xfca5a5, css:'#fca5a5', r:0.30, detail:'Best Paper Award at ICTCS · Wildlife Detection research · SpringerNature', parent:'award' },
+    { id:'a3',  label:'1st Place\nTech Paper',       level:2, hex:0xfca5a5, css:'#fca5a5', r:0.30, detail:'1st Place · University-level Technical Paper Presentation', parent:'award' },
+    { id:'a4',  label:'Best\nStudent',               level:2, hex:0xfca5a5, css:'#fca5a5', r:0.30, detail:'Best Student award for academic and extracurricular excellence', parent:'award' },
+    { id:'a5',  label:'State\nScholarship',          level:2, hex:0xfca5a5, css:'#fca5a5', r:0.30, detail:'State-level scholarship for academic performance · Featured in Indian newspaper', parent:'award' },
+    { id:'a6',  label:'Star\nPerformer',             level:2, hex:0xfca5a5, css:'#fca5a5', r:0.30, detail:'Star Performer recognition for exceptional team & organizational contributions', parent:'award' },
+    // level 2 — mentor (3)
+    { id:'m1',  label:'Caltech\nLongevity 2026',     level:2, hex:0xfdba74, css:'#fdba74', r:0.33, detail:'Mentor · Caltech Longevity Hackathon 2026', parent:'mentor' },
+    { id:'m2',  label:'DJSCE\nBoard of Studies',     level:2, hex:0xfdba74, css:'#fdba74', r:0.33, detail:'Board of Studies DJSCE AI & DS · 8th & 9th editions (2025–2026)', parent:'mentor' },
+    { id:'m3',  label:'Jain Society\nSan Diego',     level:2, hex:0xfdba74, css:'#fdba74', r:0.33, detail:'Executive Committee · Jain Society of San Diego (non-profit)', parent:'mentor' },
+  ];
+
+  // ── Build lookup maps ──
+  var nodeMap = {}, childMap = {};
+  NODES.forEach(function(n) { nodeMap[n.id] = n; });
+  NODES.forEach(function(n) {
+    if (!n.parent) return;
+    if (!childMap[n.parent]) childMap[n.parent] = [];
+    childMap[n.parent].push(n.id);
+  });
+
+  // ── Compute 3D positions ──
+  nodeMap['root'].basePos = new THREE.Vector3(0, 0, 0);
+
+  // Level-1 spread
+  var L1 = ['judge','ieee','speak','pub','award','mentor'];
+  var L1POS = [
+    new THREE.Vector3( 18,    1.5,  0  ),
+    new THREE.Vector3(-13,    9,    5  ),
+    new THREE.Vector3( 7,   -14,    7  ),
+    new THREE.Vector3(-17,   -2,   -4.5),
+    new THREE.Vector3( 5,    14,   -8  ),
+    new THREE.Vector3(-5,   -14,    7  ),
+  ];
+  L1.forEach(function(id, i) { nodeMap[id].basePos = L1POS[i].clone(); });
+
+  // Level-2: collapsed (tiny cluster near parent) and expanded (fanned out)
+  var GOLDEN = Math.PI * (3 - Math.sqrt(5));
+  NODES.forEach(function(n) {
+    if (n.level !== 2) return;
+    var par      = nodeMap[n.parent];
+    var siblings = childMap[n.parent];
+    var idx      = siblings.indexOf(n.id);
+    var cnt      = siblings.length;
+    var expandR  = 2.8 + Math.sqrt(cnt) * 0.55;
+
+    var yy    = 1 - (idx / Math.max(cnt - 1, 1)) * 2;
+    var rr    = Math.sqrt(Math.max(0, 1 - yy * yy));
+    var theta = GOLDEN * idx;
+    var dir   = new THREE.Vector3(rr * Math.cos(theta), yy, rr * Math.sin(theta));
+
+    n.expandedPos  = par.basePos.clone().addScaledVector(dir, expandR);
+    n.collapsedPos = par.basePos.clone().addScaledVector(dir, 0.18);
+    n.basePos      = n.collapsedPos.clone();
+  });
+
+  // ── Animated state per node (all nodes start fully visible) ──
+  NODES.forEach(function(n) {
+    var startPos = (n.level === 2) ? n.expandedPos.clone() : n.basePos.clone();
+    n.curPos = startPos;
+    n.tgtPos = startPos.clone();
+    n.curR   = n.r;
+    n.tgtR   = n.r;
+    n.curOp  = 1;
+    n.tgtOp  = 1;
+  });
+
+  // All L1 nodes start expanded
+  var expanded = {};
+  L1.forEach(function(id) { expanded[id] = true; });
+
+  // ── Three.js scene objects ──
+  var rootGrp = new THREE.Group();
+  scene.add(rootGrp);
+
+  // Center point light
+  var cPL = new THREE.PointLight(0x4488ff, 3, 25);
+  rootGrp.add(cPL);
+
+  // L1 point lights
+  L1.forEach(function(id) {
+    var n  = nodeMap[id];
+    var pl = new THREE.PointLight(n.hex, 0.6, 8);
+    pl.position.copy(n.basePos);
+    rootGrp.add(pl);
+  });
+
+  // Node meshes
+  var meshes = {};
+  NODES.forEach(function(n) {
+    var segs = n.level === 0 ? 64 : n.level === 1 ? 32 : 20;
+    var mat  = n.id === 'root'
+      ? new THREE.MeshPhongMaterial({ color:0x0d0d0d, emissive:0x000000, emissiveIntensity:0, shininess:220, specular:0x444444, transparent:true, opacity:1 })
+      : new THREE.MeshPhongMaterial({ color:n.hex, emissive:n.hex, emissiveIntensity:n.level===1?0.22:0.15, shininess:80, transparent:true, opacity:n.curOp });
+    var m = new THREE.Mesh(new THREE.SphereGeometry(1, segs, segs), mat);
+    m.scale.setScalar(n.curR);
+    m.position.copy(n.curPos);
+    m.userData.id = n.id;
+    rootGrp.add(m);
+    meshes[n.id] = m;
+  });
+
+  // Edges (dynamic — updated each frame)
+  var edgeLines = [];
+  NODES.forEach(function(n) {
+    if (!n.parent) return;
+    var par  = nodeMap[n.parent];
+    var posA = new Float32Array([
+      par.curPos.x, par.curPos.y, par.curPos.z,
+      n.curPos.x,   n.curPos.y,   n.curPos.z,
+    ]);
+    var geo  = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(posA, 3));
+    var mat  = new THREE.LineBasicMaterial({
+      color: n.hex, transparent: true,
+      opacity: n.level === 2 ? 0.3 : 0.22,
+    });
+    var line = new THREE.Line(geo, mat);
+    rootGrp.add(line);
+    edgeLines.push({ line: line, from: par, to: n });
+  });
+
+  // Background stars (fixed, not in rootGrp)
+  var stP = new Float32Array(1200 * 3);
+  for (var i = 0; i < 1200; i++) {
+    stP[i*3] = (Math.random()-0.5)*90; stP[i*3+1] = (Math.random()-0.5)*90; stP[i*3+2] = (Math.random()-0.5)*90;
+  }
+  var stG = new THREE.BufferGeometry();
+  stG.setAttribute('position', new THREE.BufferAttribute(stP, 3));
+  scene.add(new THREE.Points(stG, new THREE.PointsMaterial({color:0xffffff,size:0.05,transparent:true,opacity:0.2})));
+
+  // ── HTML label overlay ──
+  var lblWrap = document.createElement('div');
+  lblWrap.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0;';
+  wrap.appendChild(lblWrap);
+
+  var lblEls = {};
+  NODES.forEach(function(n) {
+    var el = document.createElement('div');
+    el.style.cssText = [
+      'position:absolute',
+      'transform:translate(-50%,-50%)',
+      'text-align:center',
+      'white-space:pre-line',
+      'line-height:1.25',
+      'pointer-events:none',
+      'transition:opacity 0.3s',
+      'font-family:var(--hand)',
+      'font-weight:' + (n.level <= 1 ? '600' : '500'),
+      'font-size:' + (n.level === 0 ? '1.1rem' : n.level === 1 ? '0.88rem' : '0.68rem'),
+      'color:' + n.css,
+      'text-shadow:0 1px 8px rgba(0,0,0,1),0 0 16px rgba(0,0,0,0.9)',
+      'opacity:' + (n.level === 2 ? '0' : '1'),
+    ].join(';');
+    el.textContent = n.label;
+    lblWrap.appendChild(el);
+    lblEls[n.id] = el;
+  });
+
+  // Override root label with large hand-font text
+  var rootLbl = lblEls['root'];
+  rootLbl.style.cssText = 'position:absolute;transform:translate(-50%,-50%);text-align:center;pointer-events:none;transition:opacity 0.3s;';
+  rootLbl.innerHTML =
+    '<div style="font-family:var(--hand);font-size:2.6rem;font-weight:700;color:#fff;line-height:1.1;letter-spacing:0.01em;">Prakshal Doshi</div>' +
+    '<div style="font-family:var(--hand);font-size:1.3rem;font-weight:400;color:rgba(255,255,255,0.75);margin-top:0.35rem;line-height:1.4;">Site Reliability Engineer · Apple<br>MS Computer Science, SDSU</div>';
+
+  // ── Info panel ──
+  // ── Rich info card ──
+  var cards = {
+    'root':  { tag:'Portfolio', stats:[{v:'Apple',label:'SRE'},{v:'MS CS',label:'SDSU'}], desc:'Site Reliability Engineer and GenAI DRI at Apple — leading global SRE ops for customer-facing systems processing 26,000+ TPS, with a measured 47.9% efficiency improvement across three engineering teams.' },
+    'judge': { tag:'Community', stats:[{v:'14',label:'Hackathons'},{v:'Global',label:'Reach'}], desc:'Evaluated innovation at global hackathons spanning FinTech, AI, Cloud, and SaaS — from MLH and IBM×UNSA series to Aethra and FutureAI events.' },
+    'ieee':  { tag:'Research',  stats:[{v:'3',label:'Conferences'},{v:'6+',label:'Papers Reviewed'}], desc:'Peer-reviewed research submissions for IEEE GHTC, ETNCC, and SmartGridComm 2026 — covering AI/ML, NLP, and Energy Forecasting tracks.' },
+    'speak': { tag:'Education', stats:[{v:'6',label:'Events'},{v:'30+',label:'Engineers Reached'}], desc:'Expert lectures, YouTube live sessions, K8s bootcamps, and a podcast — sharing SRE, Kubernetes, and AI/ML insights with students and practitioners.' },
+    'pub':   { tag:'Publishing', stats:[{v:'3',label:'Journal Papers'},{v:'7',label:'Blogs'}], desc:'Research in SpringerNature, Springer, and Scopus. HackerNoon Top Story and ranked #4 AI/ML Writer. 60 Days of Kubernetes series on Medium.' },
+    'award': { tag:'Recognition', stats:[{v:'6',label:'Awards'},{v:'Google',label:'Cloud Award'}], desc:'Google Cloud Best Infrastructure, Best Paper at ICTCS, 1st Place in technical presentations, Best Student, State Scholarship, and Star Performer.' },
+    'mentor':{ tag:'Advisory', stats:[{v:'3',label:'Roles'},{v:'Caltech',label:'Longevity'}], desc:'Mentor at Caltech Longevity Hackathon 2026, Board of Studies at DJSCE AI & DS (8th & 9th editions), Executive at Jain Society of San Diego.' },
+  };
+
+  var infoEl = document.createElement('div');
+  infoEl.style.cssText = [
+    'position:absolute', 'bottom:28px', 'left:50%',
+    'transform:translateX(-50%) translateY(12px)',
+    'background:rgba(4,11,24,0.94)',
+    'border-radius:16px',
+    'padding:1.25rem 1.6rem',
+    'color:#fff',
+    'font-family:var(--hand)',
+    'line-height:1.55',
+    'z-index:2',
+    'backdrop-filter:blur(14px)',
+    'text-align:left',
+    'opacity:0',
+    'transition:opacity 0.25s ease, transform 0.25s ease',
+    'min-width:320px',
+    'max-width:min(420px,88vw)',
+    'pointer-events:none',
+    'border:1px solid rgba(255,255,255,0.08)',
+    'box-shadow:0 8px 40px rgba(0,0,0,0.6)',
+  ].join(';');
+  wrap.appendChild(infoEl);
+  var infoTimer;
+
+  function showInfo(n, persist) {
+    clearTimeout(infoTimer);
+    var c = cards[n.id];
+    if (!c) { c = { tag:'Node', stats:[], desc: n.detail || '' }; }
+    var statsHtml = c.stats.map(function(s) {
+      return '<div style="text-align:center">' +
+        '<div style="font-size:1.5rem;font-weight:700;color:' + n.css + ';line-height:1">' + s.v + '</div>' +
+        '<div style="font-size:0.88rem;color:rgba(255,255,255,0.45);margin-top:0.15rem;text-transform:uppercase;letter-spacing:0.08em">' + s.label + '</div>' +
+        '</div>';
+    }).join('');
+    infoEl.style.borderColor = n.css + '55';
+    infoEl.innerHTML =
+      '<div style="font-size:0.92rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:' + n.css + ';margin-bottom:0.4rem">' + c.tag + '</div>' +
+      '<div style="font-size:1.55rem;font-weight:700;margin-bottom:0.9rem;line-height:1.2">' + n.label.replace('\n',' ') + '</div>' +
+      (statsHtml ? '<div style="display:flex;gap:2rem;padding:0.75rem 0;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:0.85rem">' + statsHtml + '</div>' : '') +
+      '<div style="font-size:1.15rem;color:rgba(255,255,255,0.65);line-height:1.65">' + c.desc + '</div>';
+    infoEl.style.opacity = '1';
+    infoEl.style.transform = 'translateX(-50%) translateY(0)';
+    if (!persist) infoTimer = setTimeout(function() { hideInfo(); }, 5000);
+  }
+  function hideInfo() {
+    clearTimeout(infoTimer);
+    infoEl.style.opacity = '0';
+    infoEl.style.transform = 'translateX(-50%) translateY(12px)';
+  }
+
+  // ── Expand / collapse ──
+  function expandNode(id) {
+    var kids = childMap[id] || [];
+    kids.forEach(function(cid) {
+      var c    = nodeMap[cid];
+      c.tgtPos = c.expandedPos.clone();
+      c.tgtR   = c.r;
+      c.tgtOp  = 1;
+    });
+    edgeLines.forEach(function(e) {
+      if (e.from.id === id) e.line.material.opacity = 0.3;
+    });
+  }
+
+  function collapseNode(id) {
+    var kids = childMap[id] || [];
+    kids.forEach(function(cid) {
+      var c    = nodeMap[cid];
+      c.tgtPos = c.collapsedPos.clone();
+      c.tgtR   = 0.04;
+      c.tgtOp  = 0;
+    });
+    edgeLines.forEach(function(e) {
+      if (e.from.id === id) e.line.material.opacity = 0;
+    });
+    hideInfo();
+  }
+
+  // ── Interaction ──
+  var ray = new THREE.Raycaster();
+  var mv  = new THREE.Vector2();
+  var allM = NODES.map(function(n) { return meshes[n.id]; });
+
+  // baseY/baseX accumulate from drag; rotY/rotX are the smoothed render values
+  var baseY = 0.25, baseX = 0.05;
+  var rotY  = baseY,  rotX  = baseX;
+  var mx = 0, my = 0; // normalized mouse -1..1 across window
+  var drag = false, dsx = 0, dsy = 0, dMoved = false;
+  var autoRot = true, autoT = null;
+
+  function resetAutoRot() {
+    autoRot = false;
+    clearTimeout(autoT);
+    autoT = setTimeout(function() { autoRot = true; }, 3000);
+  }
+
+  // Drag
+  canvas.addEventListener('mousedown', function(e) {
+    drag = true; dMoved = false;
+    dsx = e.clientX; dsy = e.clientY;
+    resetAutoRot();
+  });
+  window.addEventListener('mouseup', function() { drag = false; });
+
+  // Mouse move: drag OR mouse-follow
+  window.addEventListener('mousemove', function(e) {
+    mx = (e.clientX / window.innerWidth)  *  2 - 1;
+    my = (e.clientY / window.innerHeight) * -2 + 1;
+    if (drag) {
+      resetAutoRot();
+      var dx = e.clientX - dsx, dy = e.clientY - dsy;
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) dMoved = true;
+      baseY += dx * 0.006;
+      baseX += dy * 0.006;
+      baseX = Math.max(-1.1, Math.min(1.1, baseX));
+      dsx = e.clientX; dsy = e.clientY;
+    }
+  });
+
+  // Touch drag
+  canvas.addEventListener('touchstart', function(e) {
+    var t = e.touches[0]; drag = true; dMoved = false;
+    dsx = t.clientX; dsy = t.clientY; resetAutoRot();
+  }, {passive:true});
+  window.addEventListener('touchend', function() { drag = false; });
+  canvas.addEventListener('touchmove', function(e) {
+    if (!drag) return;
+    var t = e.touches[0], dx = t.clientX - dsx, dy = t.clientY - dsy;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) dMoved = true;
+    baseY += dx * 0.006; baseX += dy * 0.006;
+    baseX = Math.max(-1.1, Math.min(1.1, baseX));
+    dsx = t.clientX; dsy = t.clientY;
+  }, {passive:true});
+
+  // Click to expand/collapse
+  canvas.addEventListener('click', function(e) {
+    if (dMoved) return;
+    var rect = canvas.getBoundingClientRect();
+    mv.x =  ((e.clientX - rect.left) / W) * 2 - 1;
+    mv.y = -((e.clientY - rect.top)  / H) * 2 + 1;
+    ray.setFromCamera(mv, camera);
+    var hits = ray.intersectObjects(allM);
+    if (!hits.length) return;
+    var n = nodeMap[hits[0].object.userData.id];
+    if (!n) return;
+    if (n.level === 0 || n.level === 2) { showInfo(n, false); return; }
+    if (expanded[n.id]) {
+      expanded[n.id] = false; collapseNode(n.id);
+    } else {
+      Object.keys(expanded).forEach(function(xid) {
+        if (expanded[xid]) { expanded[xid] = false; collapseNode(xid); }
+      });
+      expanded[n.id] = true; expandNode(n.id); showInfo(n, true);
+    }
+  });
+
+  // ── Projection helper ──
+  var wv = new THREE.Vector3();
+  function toScreen(mesh) {
+    mesh.getWorldPosition(wv);
+    wv.project(camera);
+    return { x: (wv.x + 1) / 2 * W, y: (-wv.y + 1) / 2 * H };
+  }
+
+  // ── Render loop ──
+  var tk = 0, LS = 0.07;
+  function animate() {
+    requestAnimationFrame(animate);
+    tk += 0.007;
+    // Auto-rotate base when idle
+    if (autoRot) baseY += 0.004;
+    // Mouse adds a gentle offset on top of the base rotation
+    var tgtY = baseY + mx * 0.22;
+    var tgtX = baseX + my * 0.12;
+    rotY += (tgtY - rotY) * 0.05;
+    rotX += (tgtX - rotX) * 0.05;
+    rootGrp.rotation.y = rotY;
+    rootGrp.rotation.x = rotX;
+
+    NODES.forEach(function(n) {
+      n.curPos.lerp(n.tgtPos, LS);
+      n.curR  += (n.tgtR  - n.curR)  * LS;
+      n.curOp += (n.tgtOp - n.curOp) * LS;
+
+      var m = meshes[n.id];
+      m.position.copy(n.curPos);
+      m.scale.setScalar(Math.max(0.001, n.curR));
+      m.material.opacity = n.curOp;
+
+      var sc = toScreen(m);
+      var lb = lblEls[n.id];
+      lb.style.left    = sc.x + 'px';
+      lb.style.top     = (n.id === 'root' ? sc.y : sc.y - n.curR * 32) + 'px';
+      lb.style.opacity = n.curOp < 0.3 ? '0' : String(Math.min(1, n.curOp));
+    });
+
+    edgeLines.forEach(function(e) {
+      var arr = e.line.geometry.attributes.position.array;
+      arr[0] = e.from.curPos.x; arr[1] = e.from.curPos.y; arr[2] = e.from.curPos.z;
+      arr[3] = e.to.curPos.x;   arr[4] = e.to.curPos.y;   arr[5] = e.to.curPos.z;
+      e.line.geometry.attributes.position.needsUpdate = true;
+    });
+
+    cPL.intensity = 2.2 + Math.sin(tk * 3) * 0.7;
+    meshes['root'].scale.setScalar(nodeMap['root'].r * (1 + Math.sin(tk * 2.2) * 0.04));
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', function() {
+    W = wrap.clientWidth;
+    H = wrap.clientHeight;
+    renderer.setSize(W, H);
+    camera.aspect = W / H;
+    camera.updateProjectionMatrix();
+  });
+
+  canvas.style.cursor = 'grab';
+})();
+</script>
 
 <script>
   // Mobile menu toggle
